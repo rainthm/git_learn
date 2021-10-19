@@ -168,9 +168,9 @@ fatal: 无法读取远程仓库。
 
 关联一个远程库时必须给远程库指定一个名字，origin是默认习惯命名；
 
-关联后，使用命令git push -u origin master第一次推送master分支的所有内容；
+关联后，使用命令git push -u origin main第一次推送main分支的所有内容；
 
-此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；
+此后，每次本地提交后，只要有必要，就可以使用命令git push o推送最新修改；
 
 ---
 
