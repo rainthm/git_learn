@@ -73,3 +73,46 @@ git commit -m "understand how stage works"
 ```
 如果提交完后没有其他更改，则暂存区就干净了
 ![](pic/1.jpeg)
+## 管理修改
+每次修改，如果不用git add到暂存区，那就不会加入到commit中
+
+## 撤销修改
+分几种情况
+### 1,文件只是保存
+比如编辑了readme.txt并保存。
+用git status查看有修改。
+用git restore 可以恢复到编辑前的状态。
+```
+ryan@ryan-VirtualBox:~/git/gitlearn$ git status
+位于分支 master
+尚未暂存以备提交的变更：
+  （使用 "git add <文件>..." 更新要提交的内容）
+  （使用 "git restore <文件>..." 丢弃工作区的改动）
+        修改：     git_learn.md
+        修改：     readme.txt
+修改尚未加入提交（使用 "git add" 和/或 "git commit -a"）
+```
+```
+ryan@ryan-VirtualBox:~/git/gitlearn$ git restore readme.txt
+ryan@ryan-VirtualBox:~/git/gitlearn$ git status
+位于分支 master
+尚未暂存以备提交的变更：
+  （使用 "git add <文件>..." 更新要提交的内容）
+  （使用 "git restore <文件>..." 丢弃工作区的改动）
+        修改：     git_learn.md
+
+修改尚未加入提交（使用 "git add" 和/或 "git commit -a"）
+```
+### 2，放弃已经使用git add，即在暂存区的
+```
+ryan@ryan-VirtualBox:~/git/gitlearn$ git status
+位于分支 master
+要提交的变更：
+  （使用 "git restore --staged <文件>..." 以取消暂存）
+        修改：     readme.txt
+```
+相当于把文件放回到工作区
+再git restore <file>就可以了
+### 3,放弃已经commit的
+需要使用前面的方法
+git reset --hard <id>
