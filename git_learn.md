@@ -121,4 +121,56 @@ git reset --hard <id>
 命令git rm用于删除一个文件。如果一个文件已经被提交到版本库，那么你永远不用担心误删，但是要小心，你只能恢复文件到最新版本，你会丢失最近一次提交后你修改的内容。
 
 # 远程仓库
-已经建好远程账户
+已经建好github账户
+在不同的电脑上都需要有不同的公钥
+1、检查/home/ryan/.ssh/目录中是否有id_rsa和id_rsa.pub这两个文件。如果没有。则运行
+```
+ryan@ryan-VirtualBox:~/.ssh$ ssh-keygen -t rsa -C "rainthm@139.com"
+```
+如果一切顺利的话，可以在用户主目录里找到.ssh目录，里面有id_rsa和id_rsa.pub两个文件，这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人。
+
+（2）登录GitHub，打开“Account settings”，“SSH Keys”页面：
+
+然后，点“Add SSH Key”，填上任意Title，在Key文本框里粘贴id_rsa.pub文件的内容：
+
+## 建立远程仓库
+在web上操作
+
+## 将本地添加到远程库
+```
+ryan@ryan-VirtualBox:~/git/gitlearn$ git push -u origin main
+枚举对象中: 37, 完成.
+对象计数中: 100% (37/37), 完成.
+压缩对象中: 100% (32/32), 完成.
+写入对象中: 100% (37/37), 27.23 KiB | 3.89 MiB/s, 完成.
+总共 37（差异 11），复用 0（差异 0），包复用 0
+remote: Resolving deltas: 100% (11/11), done.
+To github.com:rainthm/git_learn
+ * [new branch]      main -> main
+分支 'main' 设置为跟踪来自 'origin' 的远程分支 'main'。
+```
+开始没有添加公钥，出现了的错误 
+```
+ryan@ryan-VirtualBox:~/git/gitlearn$ git push -u origin main
+git@github.com: Permission denied (publickey).
+fatal: 无法读取远程仓库。
+
+请确认您有正确的访问权限并且仓库存在。
+```
+## 删除远程库
+删除远程库，可以用git remote rm <name>命令。使用前，建议先用git remote -v查看远程库信息：
+
+删除其实是解绑。
+后面再关联上就可以了
+
+---
+要关联一个远程库，使用命令git remote add origin git@server-name:path/repo-name.git；
+
+关联一个远程库时必须给远程库指定一个名字，origin是默认习惯命名；
+
+关联后，使用命令git push -u origin master第一次推送master分支的所有内容；
+
+此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；
+
+---
+
