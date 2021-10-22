@@ -5,4 +5,4 @@ Git has a mutable index called stage.
 Git tracks changes.
 test after commit.\
 Creating a new branch is quick and simple.
-
+modified by dev/bob in remote.
